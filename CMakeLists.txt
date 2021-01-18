@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
+set(CMAKE_CXX_STANDARD 11)
 
 # set the project name
 project(indirectPredicates)
@@ -25,6 +26,8 @@ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     target_compile_options(${PROJECT_NAME} PRIVATE "/D _CRT_SECURE_NO_WARNINGS")
 elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang")
     target_compile_options(${PROJECT_NAME} PRIVATE "-O0")
+    target_compile_options(${PROJECT_NAME} PRIVATE "-Wno-unknown-pragmas"
+        "-Wno-format-security" "-Wno-return-type")
 endif()
 
 # Public include directory
